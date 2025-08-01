@@ -14,8 +14,12 @@ run chmod 777 /var/log/nginx
 
 RUN apt update && \
     apt install -y nginx
+	
+copy mime.types /app/backend/mime.types
+
 
 RUN chmod -R 777 ./data && \
     chmod -R 777 ./open_webui && \
+    chmod -R 777 /app/backend/mime.types && \
     sed -i "1r sync_data.sh" ./start.sh  
 
